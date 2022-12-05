@@ -21,6 +21,19 @@ struct ListNode
 class ListFunctions
 {
 public:
+
+	ListNode* middleNode(ListNode* head) // find middle node
+	{
+		ListNode* slow = head, *fast = head;
+
+		while (fast && fast->next)
+		{
+			slow = slow->next; fast = fast->next->next;
+		}
+
+		return slow;
+	}
+
 	static ListNode* removeNthFromEnd(ListNode* head, int n)
 	{
 		auto const temp = new ListNode();
