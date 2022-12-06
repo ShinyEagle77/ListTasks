@@ -22,6 +22,31 @@ class ListFunctions
 {
 public:
 
+	ListNode* oddEvenList(ListNode* head) // sort in oddEven
+	{
+		if (!head || !head->next || !head->next->next)
+		{
+			return  head;
+		}
+
+		ListNode* odd = head;
+		ListNode* even = head->next;
+		ListNode* even_start = head->next;
+
+		while (odd->next && even->next)
+		{
+			odd->next = even->next;
+			even->next = odd->next->next;
+
+			odd = odd->next;
+			even = even->next;
+		}
+
+		odd->next = even_start;
+
+		return head;
+	}
+
 	ListNode* middleNode(ListNode* head) // find middle node
 	{
 		ListNode* slow = head, *fast = head;
@@ -63,7 +88,8 @@ public:
 		ListNode* dummyHead = new ListNode(0);
 		ListNode* curr = dummyHead;
 		int carry = 0;
-		while (l1 != NULL || l2 != NULL || carry != 0) {
+		while (l1 != NULL || l2 != NULL || carry != 0) 
+		{
 			int x = l1 ? l1->val : 0;
 			int y = l2 ? l2->val : 0;
 			int sum = carry + x + y;
